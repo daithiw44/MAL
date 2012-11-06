@@ -135,8 +135,8 @@ To create and instance of MAL
 		  console.log('ended');
 		});
 
-		see example running at [cloudfoundry nodejs using a mongolab mongoDB instance](http://mongodbstreamdemo.cloudfoundry.com/)
-		//pulled tweets from a twitter account that has volume
+see example running at [cloudfoundry nodejs using a mongolab mongoDB instance](http://mongodbstreamdemo.cloudfoundry.com/)
+//pulled tweets from a twitter account that has volume tweets and stuck them in a mongoDB at mongolab.
 
 5. ToDo.
 --------------------------------
