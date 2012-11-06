@@ -1,0 +1,23 @@
+{
+    "name": "MAL",
+    "version": "0.1",
+    "description": "MAL MongoDB Access Layer. A simple data access for MongoDB using the native-node-driver",
+    "author": "@daithi44 ",
+    "keywords": ["mongoDB", "Data Access layer", "streaming mongoDB"],
+    "repository" : {
+        "type": "git",
+        "url": ""
+    },
+    "contributors": [ 
+    {
+      "name": "David Winders",
+      "email": "david.winders@gmail.com"
+    } 
+  ],
+  "dependencies" : {
+    "JSONStream" : "0.4.2",
+    "mongodb" : "1.1.11",
+    "request": "2.11.4"
+  },
+    "engines": {"node": ">= 0.8.10"}
+}
