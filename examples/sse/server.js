@@ -5,12 +5,12 @@ var stream = require('stream')
 
 // settings object (username and password are not compulsory, remove from object if not required)
 var dbsettings = {
-	  host: '>>>>> HOST <<<<<<<'
-	  ,port: 1234567
-	  ,db: '>>>> DB <<<<<<'
-   , options: {auto_reconnect: true}
-	  /*,username: '',
-	  ,password: ''*/
+  host: '>>>>> HOST <<<<<<<'
+  ,port: 1234567
+  ,db: '>>>> DB <<<<<<'
+  , options: {auto_reconnect: true}
+  ,username: '',
+  ,password: ''
 };
 
 var dbManager = new MAL(dbsettings, '');
@@ -32,6 +32,7 @@ var server = http.createServer(function(req, res) {
       'Cache-Control': 'no-cache',
       'Connection': 'keep-alive'
     });
+    //flush headers
     res.write('');
     dbStream.on('data', function(data) {
       res.write('data: ' + JSON.stringify(data) + '\r\n\r\n');
@@ -45,6 +46,3 @@ var server = http.createServer(function(req, res) {
 });
 
 server.listen(5000);
-
-
-

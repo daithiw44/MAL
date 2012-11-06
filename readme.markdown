@@ -7,31 +7,34 @@ Convience methods for access a connecting to, authenticating and querying agains
 
 MAL provides an easy way to preform operations on a MongoDB instance.
 [mongodb / node-mongodb-native](https://github.com/mongodb/node-mongodb-native) -- `sits on mongodb / node-mongodb-native function calls`
-Where function calls take the format of ('collectionname', query parameters,..,...., callback);
+
+	As a rule function calls take the format of ('collectionname', query parameters,..,...., callback);
+	*exceptions being the two streams calls.
 
 To create and instance of MAL
 
 1. Create a dbSettings object
 --------------------------------
-example: 
+	//example dbSettings Object.
 
-var dbsettings = {
-	host: 'host ip or name',
-	port: port number,
-	db: 'database name',
-	options: {auto_reconnect: true},
-	username: '...',
-	password: '...'
-};
+	var dbsettings = {
+		host: 'host ip or name',
+		port: port number,
+		db: 'database name',
+		options: {auto_reconnect: true},
+		username: '...',
+		password: '...'
+	};
 
-* username and password are required only if there is authentication, if there is no authentication required remove the properties from the object.
+	//username and password are required only if there is authentication, 
+	//if there is no authentication required remove the properties from the object.
 
-var dbsettings = {
-	host: 'host ip or name',
-	port: port number,
-	db: 'database name',
-	options: {auto_reconnect: true}
-};
+	var dbsettings = {
+		host: 'host ip or name',
+		port: port number,
+		db: 'database name',
+		options: {auto_reconnect: true}
+	};
 
 2. var dbManager = new MAL(dbsettings, optionalCallback);
 ----------------------------------------------------------------
@@ -45,17 +48,17 @@ var dbsettings = {
 	Callback required
 	------------------
 
-	example:
+	//example
 
 	function optionalCallback(db){
 	  var callback = function(err, collection){
 		collection.find({status:1}, {id:1..}).toArray(function(error, result) {
-		if (error) {
-		  console.log(err); 
-		}
-		else {
-			//do something with result
-		}
+			if (error) {
+			  console.log(err); 
+			}
+			else {
+				//do something with result
+			}
 		});
 	  }
 
@@ -67,7 +70,7 @@ var dbsettings = {
 
 	var dbManager = new MAL(dbsettings, optionalCallback);
 
-	*** Obvious 'thing' with 0.1 is optionalCallBack doesn't use the MAL class but rather requires the user to a) get the collection ref and then preform the method.
+	//Obvious 'thing' with 0.1 is optionalCallBack doesn't use the MAL class but rather requires the user to get the collection ref and then preform the method.
 
 3. Function calls
 --------------------------------
@@ -81,25 +84,35 @@ var dbsettings = {
 	//Assume
 	var dbManager = new MAL(dbsettings);
 
-
 	dbManager.find ('col1', {name : 'name'}, {_id:0}, {}, function(err,result){...}); 
 	//note how options isn't required but we still have to pass it in as an empty object.
+	
+	//List of calls availaable in v0.1.
+	.findOne(collectionName, query, callback) 	
+	.insert(collection_Name, query, options, callback) 
+	.save = function(collectionName,obj, callback)
+	.update = function(collectionName, criteria, update, options, callback) 
+	.remove = function(collectionName, criteria, callback)
+	.findAndModify = function(collection_Name, criteria, sort, update, options, callback)
+	.streamPipe = function(collectionName, query, fields, options, wrStream)
+	.streamEvents = function(collectionName, query, fields, options, xStream)
 
 4. Streaming Functionality.
 --------------------------------
 	
-	MAL provides two streaming functions. (see examples).
+	MAL provides two streaming methods. (see examples).
 	
 	//Assume
 	var dbManager = new MAL(dbsettings);
 
-	 a) streamPipe.
+	 a) streamPipe. (see stream in examples)
 	 	//function(collectionName, query, fields, options, wrStream) {...
 
 	 	dbManager.streamPipe('col1',{},{},{},stream);
-		//this will return everything from 'col1' and pipe the results to wrStream where wrStream is a writable stream like response or a tcp socket.
+		//this calll will return everything from 'col1' 
+		//and pipe the results to wrStream where wrStream is a writable stream like response or a tcp socket.
 
-	 b) streamEvents.
+	 b) streamEvents.( see sse in examples);
 	 	//lets say we are streaming to serversent events.
 		//create a readable stream
 		var dbStream = new stream.Stream();
