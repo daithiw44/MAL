@@ -70,7 +70,8 @@ To create and instance of MAL
 
 	var dbManager = new MAL(dbsettings, optionalCallback);
 
-	//Obvious 'thing' with 0.1 is optionalCallBack doesn't use the MAL class but rather requires the user to get the collection ref and then preform the method.
+	`Obvious 'thing' with 0.1 is optionalCallBack doesn't use the MAL class but rather requires the user to get the collection ref 
+	and then preform the method call using node-mongodb-native directly for both.`
 
 3. Function calls
 --------------------------------
