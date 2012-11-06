@@ -135,6 +135,9 @@ To create and instance of MAL
 		  console.log('ended');
 		});
 
+		see example running at [cloudfoundry nodejs using a mongolab mongoDB instance](http://mongodbstreamdemo.cloudfoundry.com/)
+		//pulled tweets from a twitter account that has volume
+
 5. ToDo.
 --------------------------------
 
@@ -142,10 +145,3 @@ To create and instance of MAL
 	2. Look at cleaning up function calls
 	3. Add mapReduce and other calls
 	4. Take it from there.
-	 	
-
-
-
-
-
-
