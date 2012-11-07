@@ -1,15 +1,17 @@
-MAL (Simple MongoDB Access Layer)
-==================================
+MAL (Simple MongoDB Access Layer) v0.2
+======================================
 
 
-Convience methods for access a connecting to, authenticating and querying against a MongoDB.
+Convience methods for access a connecting to, authenticating and querying against a MongoDB instance in Node.
 --------------------------------------------------------------------------------------------
 
 MAL provides an easy way to preform operations on a MongoDB instance.
 [mongodb / node-mongodb-native](https://github.com/mongodb/node-mongodb-native) -- `sits on mongodb / node-mongodb-native function calls`
 
-	As a rule function calls take the format of ('collectionname', query parameters,..,...., callback);
-	*exceptions being the two streams calls.
+	As a general rule function calls take the format of ('collectionname', ...>>> same rules for params as node-mongodb-native);
+	*exceptions being the two streams calls where the last parameters are always the writebale stream for streamPipe 
+		or readable stream for streamEvents.
+	** no callback if none is desired but set {safe:false} etc.. same as node-mongodb-native.
 
 To create and instance of MAL
 
@@ -72,31 +74,32 @@ To create and instance of MAL
 
 	For another example see in test0.js in tests.
 
-	`Obvious 'thing' with 0.1 is optionalCallBack doesn't use the MAL class but rather requires the user to get the collection ref 
+	`Obvious 'thing' is optionalCallBack doesn't use the MAL class but rather requires the user to get the collection ref 
 	and then preform the method call using node-mongodb-native directly for both.`
 
 3. Function calls
 --------------------------------
 
-	Function calls to the MAL instance follow the same pattern as node-mongodb-native the exception being that all parameters are expected in the call and if they are not required empty objects must be passed in their place.
+	Function calls to the MAL instance follow the same pattern as node-mongodb-native the exception being 
+	that all the first paramater is the name of the collection being queried.
 
-	The first parameter is always the collection name. follows by parameters expected by node-mongodb-native
+	The first parameter is always the collection name, followed by parameters expected by node-mongodb-native
 
-	example. find
+	example:
 	
 	//Assume
 	var dbManager = new MAL(dbsettings);
-
-	dbManager.find ('col1', {name : 'name'}, {_id:0}, {}, function(err,result){...}); 
-	//note how options isn't required but we still have to pass it in as an empty object.
+	dbManager.find ('col1', {name : 'name'}, {_id:0}, function(err,result){...}); 
 	
-	//List of calls availaable in v0.1.
+	//List of calls available in v0.2
+	.find(collectionName, query, fields, options, callback)
 	.findOne(collectionName, query, callback) 	
 	.insert(collection_Name, query, options, callback) 
 	.save = function(collectionName,obj, callback)
 	.update = function(collectionName, criteria, update, options, callback) 
 	.remove = function(collectionName, criteria, callback)
 	.findAndModify = function(collection_Name, criteria, sort, update, options, callback)
+	// for Stream methods last parameters must be the writable or readable streams.
 	.streamPipe = function(collectionName, query, fields, options, wrStream)
 	.streamEvents = function(collectionName, query, fields, options, xStream)
 
@@ -110,8 +113,9 @@ To create and instance of MAL
 
 	 a) streamPipe. (see stream in examples)
 	 	//function(collectionName, query, fields, options, wrStream) {...
-
-	 	dbManager.streamPipe('col1',{},{},{},stream);
+		// the first argument is always a collectionName
+		// the last
+	 	dbManager.streamPipe('col1',stream);
 		//this calll will return everything from 'col1' 
 		//and pipe the results to wrStream where wrStream is a writable stream like response or a tcp socket.
 
@@ -121,7 +125,7 @@ To create and instance of MAL
 		var dbStream = new stream.Stream();
 		dbStream.readable = true;
 		//pass it into the streamEvents function
-		dbManager.streamEvents('Col1', {},{},{},dbStream);
+		dbManager.streamEvents('Col1',dbStream);
 		res.writeHead(200, {
 		  'Content-Type': 'text/event-stream',
 		  'Cache-Control': 'no-cache',
@@ -144,7 +148,7 @@ To populated data, pulled tweets from a twitter account that has volume tweets a
 5. ToDo.
 --------------------------------
 
-	1. Write new tests I've just tidied up something I've been using in a few places so need to be fully tested again
-	2. Look at cleaning up function calls
+	1. Write more tests
+	2. Write examples
 	3. Add mapReduce and other calls
 	4. Take it from there.

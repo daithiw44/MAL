@@ -1,7 +1,5 @@
 //Connection test.
-var stream = require('stream')
-, fs = require('fs')
-, MAL = require('../lib/mal').MAL
+var MAL = require('../lib/mal').MAL
 , http = require('http');
 
 // settings object (username and password are not compulsory)
@@ -42,9 +40,11 @@ function testConnection (db){
   console.log('> 1 - true');
   console.log('----------------');
   console.log('THE TIME TO OPEN AND AUTH IS : ', x, 'ms')
-  console.log('FOR THE NEXT TESTS SET var time =', x);
+  console.log('FOR THE NEXT TESTS SET var time >', x);
   console.log('----------------');
+  process.exit();
 }
 var start = Date.now();
+console.log('Begin test0...');
 var dbManager = new MAL(dbsettings, testConnection);
 

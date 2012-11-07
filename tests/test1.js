@@ -1,7 +1,5 @@
 //Insert and find test.
-var stream = require('stream')
-, fs = require('fs')
-, MAL = require('../lib/mal').MAL
+var MAL = require('../lib/mal').MAL
 , http = require('http');
 
 // settings object (username and password are not compulsory)
@@ -63,6 +61,7 @@ setTimeout(function() {
         console.log('Expected behaviour :');
         console.log('> test 1 - true : count = 10');
         console.log('> test 1 - false : count = 0');
+        process.exit();
       }
     });
   };

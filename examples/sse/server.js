@@ -17,7 +17,6 @@ var dbManager = new MAL(dbsettings, '');
 
 var server = http.createServer(function(req, res) {
   if (req.url === '/') {
-    console.log('here');
     fileName = 'index.html';
     var out = fs.createReadStream(fileName);
     out.pipe(res);
@@ -25,7 +24,7 @@ var server = http.createServer(function(req, res) {
     var dbStream = new stream.Stream();
     dbStream.readable = true;
     //Insert Collection here.
-    dbManager.streamEvents('>>>>>>Collection Name <<<<<<', {},{},{},dbStream);
+    dbManager.streamEvents('>>>>>>Collection Name <<<<<<',dbStream);
     var start = Date.now();
     res.writeHead(200, {
       'Content-Type': 'text/event-stream',
