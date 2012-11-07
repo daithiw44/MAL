@@ -1,4 +1,4 @@
-MAL (Simple MongoDB Access Layer) v0.2
+MAL (Simple MongoDB Access Layer) v0.2.1
 ======================================
 
 
@@ -13,7 +13,11 @@ MAL provides an easy way to preform operations on a MongoDB instance.
 		or readable stream for streamEvents.
 	** no callback if none is desired but set {safe:false} etc.. same as node-mongodb-native.
 
-To create and instance of MAL
+0. npm
+--------------------------------
+npm install mal
+
+var MAL = require('mal').MAL;
 
 1. Create a dbSettings object
 --------------------------------
