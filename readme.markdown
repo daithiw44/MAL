@@ -2,7 +2,7 @@ MAL (Simple MongoDB Access Layer) v0.2.1
 ======================================
 
 
-Convenience methods for access a connecting to, authenticating and querying against a MongoDB instance in Node.
+Convenience methods for accessing and connecting to, authenticating and querying against a MongoDB instance in Node.
 --------------------------------------------------------------------------------------------
 
 MAL provides an easy way to preform operations on a MongoDB instance.
