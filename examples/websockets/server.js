@@ -2,12 +2,12 @@ var http = require('http')
 , MAL = require('mal').MAL;
 // settings object (username and password are not compulsory)
 var dbsettings = {
-	  host: 'localhost',
-	  port: 27017,
-	  db: 'test',
-    options: {auto_reconnect: true},
-	  username: 'test',
-	  password: 'test'
+  host: 'localhost',
+  port: 27017,
+  db: 'test',
+  options: {auto_reconnect: true},
+  username: 'test',
+  password: 'test'
 };
 
 var dbManager = new MAL(dbsettings, '');
