@@ -1,4 +1,4 @@
-MAL (Simple MongoDB Access Layer) v0.2.1
+MAL (Simple MongoDB Access Layer) v0.2.3
 ======================================
 
 
