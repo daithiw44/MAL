@@ -16,8 +16,8 @@
   ],
   "dependencies" : {
     "JSONStream" : "0.4.2",
-    "mongodb" : "1.1.11",
+    "mongodb" : "1.2.14",
     "request": "2.11.4"
   },
-    "engines": {"node": ">= 0.8.10"}
+    "engines": {"node": ">= 0.10.0"}
 }

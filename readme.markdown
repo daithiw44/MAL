@@ -1,9 +1,11 @@
-MAL (Simple MongoDB Access Layer) v0.2.3
+MAL (Simple MongoDB Access Layer) v0.3.0
 ======================================
 
 
 Convenience methods for accessing and connecting to, authenticating and querying against a MongoDB instance in Node.
 --------------------------------------------------------------------------------------------
+
+NOW USES NODE v0.10 and mongodb-1.2.14, to cater for process.nextTick see changelog.
 
 MAL provides an easy way to preform operations on a MongoDB instance.
 [mongodb / node-mongodb-native](https://github.com/mongodb/node-mongodb-native) -- `sits on mongodb / node-mongodb-native function calls`
@@ -125,11 +127,8 @@ var MAL = require('mal').MAL;
 
 	 b) streamEvents.( see sse in examples);
 	 	//lets say we are streaming to serversent events.
-		//create a readable stream
-		var dbStream = new stream.Stream();
-		dbStream.readable = true;
-		//pass it into the streamEvents function
-		dbManager.streamEvents('Col1',dbStream);
+		//pass http response object as stream, or store the response object and pass in the stores response
+		dbManager.streamEvents('Col1',res);
 		res.writeHead(200, {
 		  'Content-Type': 'text/event-stream',
 		  'Cache-Control': 'no-cache',
@@ -137,13 +136,6 @@ var MAL = require('mal').MAL;
 		});
 		//flush headers
 		res.write('');
-		//and listen on events
-		dbStream.on('data', function(data) {
-		  res.write('data: ' + JSON.stringify(data) + '\r\n\r\n');
-		});
-		dbStream.on('end', function() {
-		  console.log('ended');
-		});
 	c) stream to websockets with .streamPipe
 		see websockets in examples using shoe and browserify.
 
@@ -159,3 +151,9 @@ To populated data, pulled tweets from a twitter account that has volume tweets a
 	2. Write examples
 	3. Add mapReduce and other calls
 	4. Take it from there.
+
+6. Changelog.
+--------------------------------
+
+	1. Node server may be up before DBConnection, depending on how MAL is used. MAL will now buffer the db requests while the connection is being established and execut them once the connection is live.
+	2. Node changes to streams in v0.10, streams for server sent events are piped and v0.3.0 requires node v0.10.
