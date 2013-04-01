@@ -5,7 +5,7 @@ MAL (Simple MongoDB Access Layer) v0.3.0
 Convenience methods for accessing and connecting to, authenticating and querying against a MongoDB instance in Node.
 --------------------------------------------------------------------------------------------
 
-NOW USES NODE v0.10 and mongodb-1.2.14, to cater for process.nextTick see changelog.
+MAL NOW USES NODE v0.10 and mongodb-1.2.14, to cater for process.nextTick, and buffers requests while server connects to DB. see changelog.
 
 MAL provides an easy way to preform operations on a MongoDB instance.
 [mongodb / node-mongodb-native](https://github.com/mongodb/node-mongodb-native) -- `sits on mongodb / node-mongodb-native function calls`
@@ -55,10 +55,11 @@ var MAL = require('mal').MAL;
 ``` js
 
 	var dbManager = new MAL(dbsettings);
+```
 
 	Callback required
 	------------------
-
+``` js
 	//example (see test3.js)
 	var obj = {
 	  b: 'connected',
