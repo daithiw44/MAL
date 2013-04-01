@@ -24,6 +24,7 @@ var MAL = require('mal').MAL;
 1. Create a dbSettings object
 --------------------------------
 	//example dbSettings Object.
+``` js
 
 	var dbsettings = {
 		host: 'host ip or name',
@@ -43,6 +44,7 @@ var MAL = require('mal').MAL;
 		db: 'database name',
 		options: {auto_reconnect: true}
 	};
+```
 
 2. var dbManager = new MAL(dbsettings, optionalCallback);
 ----------------------------------------------------------------
@@ -50,38 +52,40 @@ var MAL = require('mal').MAL;
 
 	No CallBack required.
 	----------------------
+``` js
 
 	var dbManager = new MAL(dbsettings);
 
 	Callback required
 	------------------
 
-	//example
-
-	function optionalCallback(db){
-	  var callback = function(err, collection){
-		collection.find({status:1}, {id:1..}).toArray(function(error, result) {
-			if (error) {
-			  console.log(err); 
-			}
-			else {
-				//do something with result
-			}
+	//example (see test3.js)
+	var obj = {
+	  b: 'connected',
+	  t: new Date()
+	};
+	var dbManager = new MAL(dbsettings, function(){
+	  dbManager.insert('Tests', obj, {},function(err,result) {
+		dbManager.find('Tests',{ b: 'connected'},function(err,result) {
+		  console.log(result);
 		});
-	  }
-
-	  db.collection('matches', function(error, collection) {
-		if (error) callback(error);
-		else callback(null, collection);
 	  });
-	}
+	});
+``` 
 
-	var dbManager = new MAL(dbsettings, optionalCallback);
+	As of MAL 0.3.0 MAL buffers requests until a connection is establish, and then plays through the requests one the db connection status is 'connected'.
 
-	For another example see in test0.js in tests.
+	optionalCallback could also be a function non db related for a example a node process.
+``` js
 
-	`Obvious 'thing' is optionalCallBack doesn't use the MAL class but rather requires the user to get the collection ref 
-	and then preform the method call using node-mongodb-native directly for both.`
+	var dbManager = new MAL(dbsettings, function(){
+		http.createServer(function (req, res) {
+		  res.writeHead(200, {'Content-Type': 'text/plain'});
+		  res.end('Hello World\n');
+		}).listen(1337, '127.0.0.1');
+		console.log('Server running at http://127.0.0.1:1337/');
+	});
+``` 
 
 3. Function calls
 --------------------------------
@@ -92,6 +96,7 @@ var MAL = require('mal').MAL;
 	The first parameter is always the collection name, followed by parameters expected by node-mongodb-native
 
 	example:
+``` js
 	
 	//Assume
 	var dbManager = new MAL(dbsettings);
@@ -108,6 +113,7 @@ var MAL = require('mal').MAL;
 	// for Stream methods last parameters must be the writable or readable streams.
 	.streamPipe = function(collectionName, query, fields, options, wrStream)
 	.streamEvents = function(collectionName, query, fields, options, xStream)
+``` 
 
 4. Streaming Functionality.
 --------------------------------
