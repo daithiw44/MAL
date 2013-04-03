@@ -1,6 +1,6 @@
 {
     "name": "mal",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "description": "MAL MongoDB Access Layer. A simple data access for MongoDB using the native-node-driver",
     "author": "@daithi44 ",
     "keywords": ["mongoDB", "Data Access layer", "streaming from mongoDB"],
@@ -19,5 +19,5 @@
     "mongodb" : "1.2.14",
     "request": "2.11.4"
   },
-    "engines": {"node": ">= 0.10.0"}
+    "engines": {"node": ">= 0.8.0"}
 }

@@ -4,24 +4,22 @@ var MAL = require('../lib/mal').MAL
 
 // settings object (username and password are not compulsory)
 var dbsettings = {
-  host: '',
-  port: 999,
-  db: '',
-  options: {auto_reconnect: true},
-  username: '',
-  password: ''
+  host: 'localhost',
+  port: 27017,
+  db: 'bumper',
+  options: {auto_reconnect: true}
 };
 
-function testConnection (db){
+function testConnection (){
   //test successful connection
-  if(db.hasOwnProperty('serverConfig')){
-    if(db.serverConfig.connected === true){
+  if(this.db.hasOwnProperty('serverConfig')){
+    if(this.db.serverConfig.connected === true){
       console.log('> 0 - true');
     } else {
       console.log('> 0 - false');
     }
   //test connected to correct DB.
-    if(db.databaseName === dbsettings.db){
+    if(this.db.databaseName === dbsettings.db){
       console.log('> 1 - true');
     } else {
       console.log('> 1 - false');

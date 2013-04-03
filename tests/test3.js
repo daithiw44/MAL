@@ -16,8 +16,9 @@ var obj = {
 };
 var dbManager = new MAL(dbsettings, function(){
   dbManager.insert('Tests', obj, {},function(err,result) {
-    dbManager.find('Tests',{ b: 'connected'},function(err,result) {
-      console.log(result);
+    dbManager.find('Tests',{ b: 'connected'},function(err,result1) {
+      console.log(result1);
+      process.exit();
     });
   });
 });

@@ -4,12 +4,10 @@ var MAL = require('../lib/mal').MAL
 
 // settings object (username and password are not compulsory)
 var dbsettings = {
-  host: '',
-  port: 999,
-  db: '',
-  options: {auto_reconnect: true},
-  username: '',
-  password: ''
+  host: 'localhost',
+  port: 27017,
+  db: 'bumper',
+  options: {auto_reconnect: true}
 };
 
 var dbManager = new MAL(dbsettings);
