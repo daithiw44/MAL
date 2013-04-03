@@ -5,7 +5,7 @@ MAL (Simple MongoDB Access Layer) v0.3.4
 Convenience methods for accessing and connecting to, authenticating and querying against a MongoDB instance in Node.
 --------------------------------------------------------------------------------------------
 
-MAL 0.3.3  uses mongodb-1.2.14, to cater for process.nextTick, and buffers requests while server connects to DB. see changelog.
+MAL 0.3.4  uses mongodb-1.2.14, to cater for process.nextTick, and buffers requests while server connects to DB. see changelog.
 
 -For node > 0.8.0
 
