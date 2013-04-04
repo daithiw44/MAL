@@ -23,10 +23,12 @@ npm install mal
 
 var MAL = require('mal').MAL;
 
-1. Create a dbSettings object
+1. Create a dbSettings object with Authentication if required.
 --------------------------------
-	//example dbSettings Object.
+	example dbSettings Objects.
 ``` js
+
+	//Authenticate
 
 	var dbsettings = {
 		host: 'host ip or name',
@@ -69,8 +71,8 @@ var MAL = require('mal').MAL;
 	};
 	var dbManager = new MAL(dbsettings, function(){
 	  dbManager.insert('Tests', obj, {},function(err,result) {
-		dbManager.find('Tests',{ b: 'connected'},function(err,result) {
-		  console.log(result);
+		dbManager.find('Tests',{ b: 'connected'},function(err,result1) {
+		  console.log(result1);
 		});
 	  });
 	});
@@ -113,6 +115,8 @@ var MAL = require('mal').MAL;
 	.update = function(collectionName, criteria, update, options, callback) 
 	.remove = function(collectionName, criteria, callback)
 	.findAndModify = function(collection_Name, criteria, sort, update, options, callback)
+	//Aggregate Framework.
+	.aggregate framework = function(collection_Name, criteria, criteria....,callback);
 	// for Stream methods last parameters must be the writable or readable streams.
 	.streamPipe = function(collectionName, query, fields, options, wrStream)
 	.streamEvents = function(collectionName, query, fields, options, xStream)
