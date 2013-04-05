@@ -6,7 +6,7 @@ var MAL = require('../lib/mal').MAL
 var dbsettings = {
   host: 'localhost',
   port: 27017,
-  db: 'bumper',
+  db: 'maltest',
   options: {auto_reconnect: true}
 };
 

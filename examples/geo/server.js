@@ -9,11 +9,12 @@
 Mal just makes it easier to open, authenicate aconnect to a db. It should make it easier to connect to collections and preform any of the tasks an app would need to perform agaisnt a mongoDB instance.If you database server goes down or is delayed connecting MAL will buffer requests while server connects, reconnections to DB.
 
 #####  What MAL isn't is:
-At the moment by choice MAL won't directly, (but could ...see univeralMethod below), create your indexes, reIndex it won't drop collections, I normaly have them done before hand, if you really need them
+At the moment by choice MAL won't directly, (but could ...see univeralMethod below), create your indexes, reIndex it won't drop collections, I normaly have them done before hand or via the db directly as oppose to in a node instance or an APP, if you really need them
 
-MAL.universalMethod('method',arguments);
-eg. MAL.universalMethod('createIndex',['collection_name',fieldOrSpec, {options}, callback]);
-see example in geo for use of universalMethod instead of ensureIndex.
+	MAL.universalMethod('method',arguments);
+	eg. MAL.universalMethod('createIndex',['collection_name',fieldOrSpec, {options}, callback]);
+	see example in geo for use of universalMethod instead of ensureIndex.
+
 
 -For node > 0.8.0
 
@@ -95,12 +96,6 @@ var dbManager = new MAL(dbsettings, optionalCallback);
 	  });
 	});
 ``` 
-
-#### Buffers requests if there is no connection established.
-----------------------------------------------------------------
-
-As of MAL 0.3.0 MAL buffers requests until a connection is establish, and then plays through the requests one the db connection status is 'connected'.
-
 optionalCallback could also be a function non db related for a example a node process.
 
 
@@ -111,6 +106,20 @@ optionalCallback could also be a function non db related for a example a node pr
 		}).listen(1337, '127.0.0.1');
 		console.log('Server running at http://127.0.0.1:1337/');
 	});
+
+
+#### Buffers requests if there is no connection established.
+----------------------------------------------------------------
+
+As of MAL 0.3.0 MAL buffers requests until a connection is establish, and then plays through the requests one the db connection status is 'connected'.
+
+Where I use buffers is when I have a server whos job it is to speak with a database. Say the database is hosted at Mongolab for example. Typical upNode example a client connects with the server firing in requests…
+
+* server goes down
+* upNode buffers til the server comes back up
+* server comes up but hasn't established a DB connection and the client fires all its buffered requests
+* In that senario all the requests are lost from the client as the server can't act on them.
+* MAL takes these requests and buffers them until the connection with Mongolab is etablished and then plays them through.
 
 
 #### Function calls
@@ -201,4 +210,3 @@ To populated data, pulled tweets from a twitter account that has volume tweets a
 	1. v0.3.4 Node server may be up before DBConnection, depending on how MAL is used. MAL will now buffer the db requests while the connection is being established and execut them once the connection is live.
 	2. v0.3.4 Node changes to streams in v0.10, streams for server sent events are piped.
 	3. v0.4.0 Aggregate, mapreduce, geoNear, geoHaystackSearch.
-
