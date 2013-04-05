@@ -138,28 +138,28 @@ The first parameter is always the collection name, followed by parameters expect
 
 	
 #### List of calls available in v0.4
-
+	MALinstance.
 	*find(collectionName, query, fields, options, callback)
 	*findOne(collectionName, query, callback) 	
 	*insert(collection_Name, query, options, callback) 
-	*save = function(collectionName,obj, callback)
-	*update = function(collectionName, criteria, update, options, callback) 
-	*remove = function(collectionName, criteria, callback)
-	*findAndModify = function(collection_Name, criteria, sort, update, options, callback)
-	*findAndRemove = function(collection_Name, criteria, sort, options, callback)
-	*ensureIndex = function(collection_Name, ..as mongodb spec
-	*count = function(collection_Name, ..as mongodb spec
-	*distinct = function(collection_Name, ..as mongodb spec
+	*save(collectionName,obj, callback)
+	*update(collectionName, criteria, update, options, callback) 
+	*remove(collectionName, criteria, callback)
+	*findAndModify(collection_Name, criteria, sort, update, options, callback)
+	*findAndRemove(collection_Name, criteria, sort, options, callback)
+	*ensureIndex(collection_Name, ..as mongodb spec
+	*count(collection_Name, ..as mongodb spec
+	*distinct(collection_Name, ..as mongodb spec
 	//Aggregate Framework.
-	*aggregate = function(collection_Name, criteria, criteria....,options,callback);
+	*aggregate(collection_Name, criteria, criteria....,options,callback);
 	//geo Stuff
-	*geoNear = function(collection_Name, x, y, options, callback);
-	*geoHaystackSearch = function(collection_Name, x, y, options, callback);
+	*geoNear(collection_Name, x, y, options, callback);
+	*geoHaystackSearch(collection_Name, x, y, options, callback);
 	//MapReduce
-	*mapReduce= function(collection_Name, map, reduce, options, callback);
+	*mapReduce(collection_Name, map, reduce, options, callback);
 	// for Stream methods last parameters must be the writable or readable streams.
-	*streamPipe = function(collectionName, query, fields, options, wrStream)
-	*streamEvents = function(collectionName, query, fields, options, xStream)
+	*streamPipe(collectionName, query, fields, options, wrStream)
+	*streamEvents(collectionName, query, fields, options, xStream)
 
 #### Streaming Functionality.
 --------------------------------
