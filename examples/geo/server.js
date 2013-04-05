@@ -72,7 +72,7 @@ var dbManager = new MAL(dbsettings, function(){
     //BULK Insert city Data
      dbManager.insert('irishcities',cityData, {safe:false},function(){
       dbManager.universalMethod('ensureIndex',['irishcities',{loc:"2d"}, function(err, result){justAfter();}]);
-      ******** OR ********
+     // ******** OR ********
      // dbManager.ensureIndex('irishcities',{loc:"2d"}, function(err, result) {
        // justAfter();
       // });
