@@ -116,9 +116,9 @@ As of MAL 0.3.0 MAL buffers requests until a connection is establish, and then p
 Where I use buffers is when I have a server whos job it is to speak with a database. Say the database is hosted at Mongolab for example. Typical upNode example a client connects with the server firing in requests…
 
 * server goes down
-* upNode buffers til the server comes back up
+* upNode client buffers til the server comes back up
 * server comes up but hasn't established a DB connection and the client fires all its buffered requests
-* In that senario all the requests are lost from the client as the server can't act on them.
+* In that senario all the requests are lost from the client as the server can't act on them as the db connection hasn't been established.
 * MAL takes these requests and buffers them until the connection with Mongolab is etablished and then plays them through.
 
 
