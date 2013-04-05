@@ -15,6 +15,7 @@ At the moment by choice MAL won't directly, (but could ...see univeralMethod bel
 	eg. MAL.universalMethod('createIndex',['collection_name',fieldOrSpec, {options}, callback]);
 	see example in geo for use of universalMethod instead of ensureIndex.
 
+Also db as an instance of the open mongoDB is available in MAL instance mal.db, so you can go all native if you want.
 
 -For node > 0.8.0
 
