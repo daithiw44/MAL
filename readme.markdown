@@ -9,7 +9,7 @@
 Mal just makes it easier to open, authenicate aconnect to a db. It should make it easier to connect to collections and preform any of the tasks an app would need to perform agaisnt a mongoDB instance.If you database server goes down or is delayed connecting MAL will buffer requests while server connects, reconnections to DB.
 
 #####  What MAL isn't is:
-At the moment by choice MAL won't directly, (but could ...see univeralMethod below), create your indexes, reIndex it won't drop collections, I normaly have them done before hand, if you really need them
+At the moment by choice MAL won't directly, (but could ...see univeralMethod below), create your indexes, reIndex it won't drop collections, I normaly have them done before hand or directly in the db, if you really need them
 
 	MAL.universalMethod('method',arguments);
 	eg. MAL.universalMethod('createIndex',['collection_name',fieldOrSpec, {options}, callback]);

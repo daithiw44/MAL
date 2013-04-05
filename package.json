@@ -1,9 +1,9 @@
 {
     "name": "mal",
-    "version": "0.3.4",
-    "description": "MAL MongoDB Access Layer. A simple data access for MongoDB using the native-node-driver",
+    "version": "0.4.0",
+    "description": "MAL MongoDB Access Layer. A MongoDB wrapper using the native-node-driver",
     "author": "@daithi44 ",
-    "keywords": ["mongoDB", "Data Access layer", "streaming from mongoDB"],
+    "keywords": ["mongoDB", "mongoDB wrapper", "streaming from mongoDB"],
     "repository" : {
         "type": "git",
         "url": "https://github.com/daithiw44/MAL"
